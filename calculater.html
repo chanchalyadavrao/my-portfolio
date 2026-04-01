@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.box {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+  width: 340px;
+  text-align: center;
+}
+
+
+h1 {
+  color: #f43f5e;
+  text-shadow: 0 0 12px #f43f5e;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 85%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  text-align: center;
+}
+
+
+.btn {
+  padding: 10px 14px;
+  margin: 6px;
+  border: none;
+  border-radius: 8px;
+  background: #334155;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #3b82f6;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #3b82f6;
+}
+
+
+.btn:active {
+  transform: scale(0.9);
+}
+
+
+.selected {
+  background: #22c55e !important;
+  box-shadow: 0 0 10px #22c55e;
+}
+
+
+#equal {
+  padding: 10px 16px;
+  margin: 6px;
+  border: none;
+  border-radius: 8px;
+  background: #f59e0b;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#equal:hover {
+  background: #d97706;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #f59e0b;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+
+li {
+  background: rgba(255,255,255,0.1);
+  margin: 8px 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e2e8f0;
+  font-size: 14px;
+}
+
+
+li button {
+  background: #ef4444;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+li button:hover {
+  background: #dc2626;
+}
+    
+</style>
+<body>
+
+    <div class="box">
+        <h1>Mini Calculator</h1>
+     <input type="number" name="" id="num1" placeholder="Enter Your 1st Number"><br>
+     <input type="number" id="num2" placeholder="Enter Your 2nd Number"><br>
+ <button class="btn">+</button>
+  <button class="btn">-</button>
+ <button class="btn">*</button>
+ <button class="btn">/</button>
+ <button id="equal">=</button>
+
+     <ul id="ul"></ul>
+    </div>
+     
+</body>
+<script>
+let num1=document.getElementById("num1")
+let num2=document.getElementById("num2")
+let opbutton=document.querySelectorAll(".btn")
+let equal=document.getElementById("equal")
+let list=document.getElementById("ul")
+
+let selectoperator=""
+opbutton.forEach(function(button){
+  button.addEventListener("click", function(){
+
+    selectoperator = button.innerText;
+
+    opbutton.forEach(btn => btn.classList.remove("selected"));
+    button.classList.add("selected");
+
+  });
+});
+
+
+equal.addEventListener("click",function(){
+    let firstNum=Number(num1.value)
+        let secondNum=Number(num2.value)
+        let result;
+
+        if(num1.value==="" || num2.value===""){
+            alert("Please Enter Both NUmbers")
+            return
+        }
+    
+     else if(selectoperator==""){
+            alert("Please Select A Operator")
+            return
+        }
+   else  if(selectoperator==="+"){
+         result=firstNum+secondNum
+        }
+    else  if(selectoperator==="-"){
+     result=firstNum-secondNum
+    }
+    else if(selectoperator==="*"){
+     result=firstNum*secondNum
+    }
+  
+    else if(selectoperator==="/"){
+    if(secondNum=="0"){
+     alert("Number IS Not Divide By 0")
+     }
+     else{
+       result=firstNum/secondNum
+     }
+     }
+
+ let li=document.createElement("li")
+ li.innerText=firstNum+ " " + selectoperator+ " " + secondNum+ "="+ result 
+
+ let del=document.createElement("button")
+ del.innerText="Del"
+
+
+del.addEventListener("click",function(){
+    li.remove();
+})
+
+li.appendChild(del)
+list.appendChild(li)
+num1.value=""
+num2.value=""
+})
+
+</script>
+
+</html>

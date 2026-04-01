@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+}
+
+
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+  width: 350px;
+  text-align: center;
+}
+
+
+h1 {
+  margin-bottom: 20px;
+  color: #38bdf8;
+  text-shadow: 0 0 10px #38bdf8;
+}
+
+
+input {
+  width: 70%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+
+#btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: 0.3s;
+}
+
+#btn:hover {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+
+li {
+  background: rgba(255,255,255,0.1);
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+li button {
+  background: #ef4444;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+li button:hover {
+  background: #dc2626;
+}
+</style>
+<body>
+    <h1>To DO List :- </h1>
+    <label for="text" ></label><input type="text" name="" id="txt" placeholder="Enter Text">
+    <button id="btn">Click </button>
+    <ul id="list"></ul>
+    
+</body>
+<script>
+let input=document.getElementById("txt")
+let btn=document.getElementById("btn")
+let list=document.getElementById("list")
+
+btn.addEventListener("click",()=>{
+    let txt=input.value;
+    if(txt==="") 
+    return;
+
+    let li=document.createElement("li");
+    li.innerText=txt;
+
+    let dlt=document.createElement("button")
+    dlt.innerText="Delete";
+
+
+    dlt.addEventListener("click",()=>{
+        li.remove();
+    })
+
+    li.appendChild(dlt);
+list.appendChild(li);
+input.value=""
+})
+ 
+
+</script>
+</html>

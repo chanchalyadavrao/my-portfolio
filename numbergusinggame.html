@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Gusing game</title>
+</head>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+
+.box {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  width: 320px;
+  text-align: center;
+}
+
+/* Title */
+h1 {
+  color: #38bdf8;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px #38bdf8;
+}
+
+/* Subtitle */
+h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #e2e8f0;
+}
+
+
+input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+button:hover {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+
+
+button:active {
+  transform: scale(0.95);
+}
+
+
+p {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #f472b6;
+  font-weight: bold;
+}
+</style>
+<body>
+
+ <div class="box">  
+
+      <h1>Number Guessing Game</h1>
+    <h2>Enter Number Between 1 To 10</h2>
+    <input type="number" id="num" placeholder="Enter Your Number"><br>
+    <button id="chk">Check</button>
+    <button id="rst">Reset</button>
+    <p id="msg">Start guessing...</p>
+
+</div>
+</body>
+<script>
+    let randomNumber = Math.floor(Math.random() * 10) + 1;
+
+let number=document.getElementById("num")
+let check=document.getElementById("chk")
+let reset=document.getElementById("rst")
+let p=document.getElementById("msg")
+
+check.addEventListener("click",function(){
+    let num= Number(number.value)
+
+if(num===""){
+    p.innerText("Please enter a number.")
+    p.style.color = "red";
+}
+
+    else if(num>10 || num<=0){
+        // p.innerText="Invalid Number Please Enter A valid Number"
+        alert("Invalid Number")
+             
+
+    }
+    else if(num===randomNumber){
+        p.innerText=" Yehh... You Find Correct Number "
+        p.style.color = "lightgreen";
+    }
+    else if(num<randomNumber){
+        p.innerText=" Ohhh... Close To The Number"
+                       p.style.color = "red";
+
+    }
+    else{
+               p.innerText=" Ohhh... Greater To The Number"
+               p.style.color = "red";
+ 
+    }
+
+});
+reset.addEventListener("click",function(){
+    randomNumber = Math.floor(Math.random() * 10) + 1;
+       number.value=""
+       p.innerText="Game Restart...."
+       console.log(randomNumber)
+
+ 
+})
+ 
+</script>
+</html>
